@@ -10,12 +10,12 @@ const cookieParser = require("cookie-parser");
 const port = process.env.PORT;
 
 const app = express();
-app.options("*", cors({ origin: "http://localhost:8000", credentials: true }));
+app.options("*", cors({ origin: "*", credentials: true }));
 
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: "http://localhost:3000/",
+    origin: "*",
     credentials: true,
   })
 );
