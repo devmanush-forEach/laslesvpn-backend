@@ -7,7 +7,7 @@ const verifyToken = (token) => {
 
 const Authenticate = async (req, res, next) => {
   try {
-    const token = req?.headers?.authorization;
+    const token = req.cookies.jwt;
     if (!token) {
       return res.status(400).send({ error: "forbidden user, Please Login" });
     }
@@ -17,8 +17,7 @@ const Authenticate = async (req, res, next) => {
     } catch (error) {
       return res.status(400).send(error.message);
     }
-
-    req.user = data.user;
+    req.user = data.data;
     next();
   } catch (error) {
     next(error);

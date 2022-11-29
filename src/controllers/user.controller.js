@@ -1,10 +1,10 @@
 const userModel = require("../models/user.model");
 
 const userController = {
-  getAllUsers: async (req, res) => {
+  getUser: async (req, res) => {
     try {
-      const user = await userModel.find();
-      return res.status(201).send(user);
+      const user = req.user;
+      return res.status(200).send({ user: user });
     } catch (error) {
       return res.status(400).send(error.message);
     }

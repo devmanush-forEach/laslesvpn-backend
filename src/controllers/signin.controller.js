@@ -24,8 +24,6 @@ const SigninController = async (req, res) => {
     const token = await generteToken(user);
     res.cookie("jwt", token);
 
-    console.log(req.cookies);
-
     return res.status(200).send({ token });
   } catch (error) {
     return res.status(400).send(error.message);
