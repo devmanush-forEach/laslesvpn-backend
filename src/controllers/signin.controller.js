@@ -22,7 +22,7 @@ const SigninController = async (req, res) => {
     }
 
     const token = await generteToken(user);
-    res.cookie("jwt", token);
+    res.cookie("jwt", token, { sameSite: "none", secure: true });
 
     return res.status(200).send({ token });
   } catch (error) {
