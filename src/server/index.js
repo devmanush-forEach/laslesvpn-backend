@@ -10,22 +10,20 @@ const SignoutController = require("../controllers/signout.controller");
 const Authenticate = require("../middlewares/authenticate");
 
 const port = process.env.PORT;
+const origin = process.env.ORIGIN;
 
 const app = express();
-app.options(
-  "http://localhost:3000",
-  cors({ origin: "http://localhost:3000", credentials: true })
-);
+app.options(origin, cors({ origin: origin, credentials: true }));
 
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: origin,
     credentials: true,
   })
 );
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", origin);
   res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
   next();
 });
