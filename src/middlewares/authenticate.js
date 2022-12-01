@@ -17,7 +17,7 @@ const Authenticate = async (req, res, next) => {
     } catch (error) {
       return res.status(400).send(error.message);
     }
-    req.user = data.data;
+    req.userid = data.data;
     next();
   } catch (error) {
     next(error);

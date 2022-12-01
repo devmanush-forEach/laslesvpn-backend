@@ -21,7 +21,7 @@ const SigninController = async (req, res) => {
       return res.status(400).send("Entered password is incorrect!!");
     }
 
-    const token = await generteToken(user);
+    const token = await generteToken(user._id);
     res.cookie("jwt", token, { sameSite: "none", secure: true });
 
     return res.status(200).send({ token });
