@@ -1,3 +1,4 @@
+const e = require("express");
 const userModel = require("../models/user.model");
 
 const SignupController = async (req, res) => {
@@ -25,7 +26,16 @@ const SignupController = async (req, res) => {
         .send({ error: `This mobile number is already registered` });
     }
 
-    const user = await userModel.create(toRegister);
+    const { name, email, phone, password } = toRegister;
+    const toCreate = {
+      name,
+      email,
+      phone,
+      password,
+      profile: req.file.path,
+    };
+
+    const user = await userModel.create(toCreate);
     return res.status(201).send(user);
   } catch (error) {
     return res.status(400).send(error.message);
