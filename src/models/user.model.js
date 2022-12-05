@@ -6,6 +6,14 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
+  profile: { type: String, required: false },
+  isAdmin: { type: String, required: true, default: false },
+  subscibedPlan: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: null,
+    required: false,
+  },
+  roles: { type: [String], required: false, default: ["user"] },
 });
 
 userSchema.pre("save", async function (next) {
