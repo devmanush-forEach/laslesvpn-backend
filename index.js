@@ -1,17 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const connectToDB = require("../configs/db");
-const SigninController = require("../controllers/signin.controller");
-const SignupController = require("../controllers/signup.controller");
-const UserRoutes = require("../routes/user.routes");
-const PlanRoutes = require("../routes/plan.routes");
-const PaymentRoutes = require("../routes/payment.routes");
+const connectToDB = require("./src/configs/db");
+const SigninController = require("./src/controllers/signin.controller");
+const SignupController = require("./src/controllers/signup.controller");
+const UserRoutes = require("./src/routes/user.routes");
+const PlanRoutes = require("./src/routes/plan.routes");
+const PaymentRoutes = require("./src/routes/payment.routes");
 const cookieParser = require("cookie-parser");
-const SignoutController = require("../controllers/signout.controller");
-const Authenticate = require("../middlewares/authenticate");
+const SignoutController = require("./src/controllers/signout.controller");
+const Authenticate = require("./src/middlewares/authenticate");
 const multer = require("multer");
-const upload = require("../middlewares/multer");
+const upload = require("./src/middlewares/multer");
 
 const port = process.env.PORT;
 const origin = process.env.ORIGIN;
