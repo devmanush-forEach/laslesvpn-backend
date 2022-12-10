@@ -6,5 +6,11 @@ const route = require("express").Router();
 
 route.get("/", PlanController.getPlans);
 route.post("/", Authenticate, upload.single("icon"), PlanController.addPlan);
+route.post(
+  "/update",
+  Authenticate,
+  upload.single("updatedIcon"),
+  PlanController.updatePlan
+);
 
 module.exports = route;

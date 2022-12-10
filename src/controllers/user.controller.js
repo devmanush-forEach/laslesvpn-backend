@@ -18,7 +18,13 @@ const userController = {
   updateUser: async (req, res) => {
     try {
       const userid = req.userid;
-      const toUpdate = req.body;
+      const { name, email, phone, profile } = req.body;
+      const toUpdate = {
+        name,
+        email,
+        phone,
+        profile: req.file.path ? req.file.path : profile,
+      };
       const updated = await userModel.findByIdAndUpdate(userid, toUpdate, {
         new: true,
       });

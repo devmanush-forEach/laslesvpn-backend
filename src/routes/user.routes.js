@@ -9,7 +9,7 @@ router.get("/", Authenticate, userController.getUser);
 router.get("/", userController.getUserById);
 router.post(
   "/update",
-  upload.single("profile"),
+  upload.single("updatedProfile"),
   Authenticate,
   userController.updateUser
 );

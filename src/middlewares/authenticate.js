@@ -8,6 +8,7 @@ const verifyToken = (token) => {
 const Authenticate = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
+    console.log(token);
     if (!token) {
       return res.status(400).send({ error: "forbidden user, Please Login" });
     }

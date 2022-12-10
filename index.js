@@ -32,6 +32,10 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.originalUrl);
+  next();
+});
 app.use(cookieParser());
 app.use("/user", UserRoutes);
 app.use("/signin", SigninController);

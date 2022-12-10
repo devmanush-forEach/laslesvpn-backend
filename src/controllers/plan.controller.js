@@ -18,6 +18,35 @@ const PlanController = {
       res.status(400).send(error.message);
     }
   },
+  updatePlan: async (req, res) => {
+    try {
+      const { _id, title, icon, features, price, quality } = req.body;
+      const toUpdate = {
+        title,
+        features,
+        price,
+        quality,
+        icon: req.file.path ? req.file.path : icon,
+      };
+
+      const updated = await planModel.findByIdAndUpdate(_id, toUpdate, {
+        new: true,
+      });
+      res.status(202).send(updated);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  },
+  updatePlan: async (req, res) => {
+    try {
+      const { _id, title, icon, features, price, quality } = req.body;
+
+      const daletd = await planModel.findByIdAndDelete(_id);
+      res.status(201).send(daletd);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  },
 };
 
 module.exports = PlanController;
