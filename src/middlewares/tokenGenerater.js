@@ -7,7 +7,7 @@ const generteToken = async (user) => {
       data: user,
     },
     process.env.JWT_SECRET_KEY,
-    { expiresIn: 60 * 60 }
+    { expiresIn: 60 * 60 * 60 }
   );
 };
 
