@@ -27,15 +27,12 @@ app.use(
   })
 );
 app.use(function (req, res, next) {
+  console.log(req.originalUrl);
   res.header("Access-Control-Allow-Origin", origin);
   res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
   next();
 });
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log(req.originalUrl);
-  next();
-});
 app.use(cookieParser());
 app.use("/user", UserRoutes);
 app.use("/signin", SigninController);
