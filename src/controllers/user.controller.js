@@ -3,7 +3,11 @@ const userModel = require("../models/user.model");
 const userController = {
   getUser: async (req, res) => {
     try {
-      const user = await userModel.findOne({ _id: req.userid }).lean().exec();
+      const user = await userModel
+        .findOne({ _id: req.userid })
+        .populate("subscibedPlan")
+        .lean()
+        .exec();
       return res.status(200).send({ user: user });
     } catch (error) {
       return res.status(400).send(error.message);

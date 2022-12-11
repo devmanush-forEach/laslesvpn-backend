@@ -11,7 +11,13 @@ const PlanController = {
     try {
       const { title, features, price, quality } = req.body;
 
-      const plan = { title, features, price, quality, icon: req.file.path };
+      const plan = {
+        title,
+        features,
+        price,
+        quality,
+        icon: req.file.path || null,
+      };
       const created = await planModel.create(plan);
       res.status(201).send(created);
     } catch (error) {

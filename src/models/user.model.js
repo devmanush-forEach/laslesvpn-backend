@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const planModel = require("./plan.model");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -10,6 +11,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: { type: String, required: true, default: false },
   subscibedPlan: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: planModel,
     default: null,
     required: false,
   },
