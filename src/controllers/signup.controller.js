@@ -36,7 +36,12 @@ const SignupController = async (req, res) => {
     };
 
     const user = await userModel.create(toCreate);
-    return res.status(201).send(user);
+    const token = await generteToken(user._id);
+    // res.cookie("jwt", token, {
+    //   sameSite: "none",
+    //   secure: true,
+    // });
+    return res.status(201).send({ token });
   } catch (error) {
     return res.status(400).send(error.message);
   }

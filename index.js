@@ -20,18 +20,18 @@ const app = express();
 app.options(origin, cors({ origin: origin, credentials: true }));
 
 app.use(express.static("public"));
-app.use(
-  cors({
-    origin: origin,
-    credentials: true,
-  })
-);
 app.use(function (req, res, next) {
   console.log(req.originalUrl);
   res.header("Access-Control-Allow-Origin", origin);
   res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
   next();
 });
+app.use(
+  cors({
+    origin: origin,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/user", UserRoutes);
