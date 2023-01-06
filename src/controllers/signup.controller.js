@@ -1,5 +1,6 @@
 const e = require("express");
 const userModel = require("../models/user.model");
+const generateToken = require("../middlewares/tokenGenerater");
 
 const SignupController = async (req, res) => {
   try {
@@ -26,17 +27,8 @@ const SignupController = async (req, res) => {
         .send({ error: `This mobile number is already registered` });
     }
 
-    const { name, email, phone, password } = toRegister;
-    const toCreate = {
-      name,
-      email,
-      phone,
-      password,
-      profile: req.file.path,
-    };
-
-    const user = await userModel.create(toCreate);
-    const token = await generteToken(user._id);
+    const user = await userModel.create(toRegister);
+    const token = await generateToken(user._id);
     // res.cookie("jwt", token, {
     //   sameSite: "none",
     //   secure: true,

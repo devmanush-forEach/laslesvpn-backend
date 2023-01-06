@@ -1,6 +1,6 @@
 const userModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
-const generteToken = require("../middlewares/tokenGenerater");
+const generateToken = require("../middlewares/tokenGenerater");
 
 const SigninController = async (req, res) => {
   try {
@@ -21,11 +21,11 @@ const SigninController = async (req, res) => {
       return res.status(400).send("Entered password is incorrect!!");
     }
 
-    const token = await generteToken(user._id);
-    res.cookie("jwt", token, {
-      sameSite: "none",
-      secure: true,
-    });
+    const token = await generateToken(user._id);
+    // res.cookie("jwt", token, {
+    //   sameSite: "none",
+    //   secure: true,
+    // });
 
     return res.status(200).send({ token });
   } catch (error) {

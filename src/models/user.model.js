@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   password: { type: String, required: true },
   profile: { type: String, required: false },
-  isAdmin: { type: String, required: true, default: false },
+  isAdmin: { type: Boolean, required: true, default: false },
   subscibedPlan: {
     type: mongoose.Schema.Types.ObjectId,
     ref: planModel,

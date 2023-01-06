@@ -4,20 +4,14 @@ const PlanController = {
   getPlans: async (req, res) => {
     try {
       const plans = await planModel.find().lean().exec();
-      req.status(200).send(plans);
-    } catch (error) {}
+      res.status(200).send({ plans });
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
   },
   addPlan: async (req, res) => {
     try {
-      const { title, features, price, quality } = req.body;
-
-      const plan = {
-        title,
-        features,
-        price,
-        quality,
-        icon: req.file.path || null,
-      };
+      const plan = req.body;
       const created = await planModel.create(plan);
       res.status(201).send(created);
     } catch (error) {
@@ -26,14 +20,7 @@ const PlanController = {
   },
   updatePlan: async (req, res) => {
     try {
-      const { _id, title, icon, features, price, quality } = req.body;
-      const toUpdate = {
-        title,
-        features,
-        price,
-        quality,
-        icon: req.file.path ? req.file.path : icon,
-      };
+      const toUpdate = req.body;
 
       const updated = await planModel.findByIdAndUpdate(_id, toUpdate, {
         new: true,
@@ -43,9 +30,9 @@ const PlanController = {
       res.status(400).send(error.message);
     }
   },
-  updatePlan: async (req, res) => {
+  deletePlan: async (req, res) => {
     try {
-      const { _id, title, icon, features, price, quality } = req.body;
+      const { _id } = req.body;
 
       const daletd = await planModel.findByIdAndDelete(_id);
       res.status(201).send(daletd);

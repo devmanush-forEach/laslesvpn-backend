@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const generteToken = async (user) => {
+const generateToken = async (user) => {
   return jwt.sign(
     {
       data: user,
@@ -11,4 +11,4 @@ const generteToken = async (user) => {
   );
 };
 
-module.exports = generteToken;
+module.exports = generateToken;
