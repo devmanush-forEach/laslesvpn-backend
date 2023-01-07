@@ -22,7 +22,10 @@ app.use(express.static("public"));
 app.use(function (req, res, next) {
   console.log(req.originalUrl);
   res.header("Access-Control-Allow-Origin", origin);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Private-Network", "true");
   res.header("Access-Control-Allow-Headers", "Content-Type, x-requested-with");
+  res.header("Content-Type", "text/xml", "application/json");
   next();
 });
 app.use(
